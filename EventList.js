@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { FlatList, StyleSheet } from 'react-native';
 import ActionButton from 'react-native-action-button'
+import { withNavigation } from 'react-navigation';
 
 import EventCard from './EventCard'
+import { getEvents } from './api'
 
 const styles = StyleSheet.create({
     list: {
@@ -18,6 +20,7 @@ class EventList extends Component {
     }
 
     componentDidMount() {
+
         setInterval(() => {
             this.setState({
                 events: this.state.events.map(evt => ({
@@ -27,12 +30,28 @@ class EventList extends Component {
             })
         }, 1000);
 
+        //from file
         const events = require('./db.json').events.map(e => ({
             ...e,
             date: new Date(e.date),
         }));
         this.setState({ events })
+
+        
+        // const { navigation } = this.props;
+        // this.focusListener = navigation.addListener('didFocus', () => {
+        //     console.log("HERE");
+        //     getEvents().then(events => {
+        //         this.setState({ events })
+        //     });
+        // });
+        
     }
+
+    // componentWillUnmount() {
+    //     // Remove the event listener
+    //     this.focusListener.remove();
+    // }
 
     handleAddEvent = () => {
         this.props.navigation.navigate('Details');
@@ -55,4 +74,4 @@ class EventList extends Component {
     }
 }
 
-export default EventList;
+export default withNavigation(EventList);
