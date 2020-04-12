@@ -38,21 +38,15 @@ class EventList extends Component {
         this.setState({ events })
 
         
-        // const { navigation } = this.props;
-        // this.focusListener = navigation.addListener('didFocus', () => {
-        //     console.log("HERE");
-        //     getEvents().then(events => {
-        //         this.setState({ events })
-        //     });
-        // });
+        const { navigation } = this.props;
+        this.focusListener = navigation.addListener('willFocus', () => {
+            getEvents().then(events => {
+                this.setState({ events })
+            });
+        });
         
     }
-
-    // componentWillUnmount() {
-    //     // Remove the event listener
-    //     this.focusListener.remove();
-    // }
-
+    
     handleAddEvent = () => {
         this.props.navigation.navigate('Details');
     }
