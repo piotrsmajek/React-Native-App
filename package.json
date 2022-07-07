@@ -22,7 +22,7 @@
     "@react-navigation/stack": "^5.2.9",
     "expo-constants": "~9.0.0",
     "mem": ">=4.0.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "prop-types": "^15.7.2",
     "react-native-action-button": "^2.8.5",
     "react-native-modal-datetime-picker": "^8.5.4",
